@@ -1,0 +1,14 @@
+.image_100_100{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.abc {
+    display: block;
+    white-space: nowrap; 
+  width: 300px;
+  height: 100px;
+  /* border: 1px solid #000000; */
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
