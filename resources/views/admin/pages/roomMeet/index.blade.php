@@ -1,6 +1,6 @@
 @extends('admin.layouts.index')
 @section('title')
-<title>Quản lí tour</title>
+<title>Quản lí phòng họp</title>
 @endsection
 @section('js')
 
@@ -15,7 +15,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    @include('admin.partials.content-header',['name'=>'Quản lí người dùng','key'=>'Danh sách'])
+    @include('admin.partials.content-header',['name'=>'Quản lí phòng họp','key'=>'Danh sách'])
     @if(session()->has('success'))
     <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -28,7 +28,8 @@
             {{ session()->get('fail') }}
         </div>
     @endif
-    <!-- DataTales Example -->
+  
+    <a class="text-danger btn" href="{{route('room-meet.create')}}"><i class="fas fa-plus"> Thêm phòng họp</i></a>
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
@@ -53,10 +54,11 @@
                             <td>{{$roomMeet->address}}</td>
                             <td>{{$roomMeet->status}}</td>
                             <td>
-                                <a href="{{route('room-meet.edit',['id'=>$roomMeet->id])}}" class="btn btn-primary">Sửa</a>
+                                  <!-- DataTales Example -->
+                                <a href="{{route('room-meet.edit',['id'=>$roomMeet->id])}}" class="text-primary"><i class="fas fa-edit"></i>
                                 <a href=""
                                 data-url="{{route('room-meet.delete',['id'=>$roomMeet->id])}}"
-                                class="btn btn-danger action_delete">Xóa</a>
+                                class="text-danger action_delete"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                         @endforeach 

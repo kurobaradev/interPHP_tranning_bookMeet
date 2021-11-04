@@ -15,7 +15,29 @@ class AdminUserController extends Controller
     }
     public function index()
     {
-        $users = $this->user->all();
+        $users = User::with('getDepartment')->get();
+        // $users = $this->user->all();
+        // dd($users); 
        return view('admin.pages.user.index', compact('users'));
+    }
+    public function ban($id)
+    {
+        $this->user->find($id)->update(
+            [
+                'status' => 1,
+            ]
+        );
+        // session()->flash('success', 'Cập nhật thành công !.');
+        return redirect(route('users.index'));
+    }
+    public function unban($id)
+    {
+        $this->user->find($id)->update(
+            [
+                'status' => 0,
+            ]
+        );
+        // session()->flash('success', 'Cập nhật thành công !.');
+        return redirect(route('users.index'));
     }
 }

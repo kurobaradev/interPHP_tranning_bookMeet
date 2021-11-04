@@ -4,19 +4,19 @@
 @endsection
 @section('js')
 
-{{-- <script src="{{asset('vendors/sweetAlert2/sweetalert2@10.js')}}"></script>
-<script src="{{asset('vendors/action/delete.js')}}"></script> --}}
+<script src="{{asset('vendors/sweetAlert2/sweetalert2@10.js')}}"></script>
+<script src="{{asset('vendors/action/delete.js')}}"></script>
 
 @endsection
 @section('css')
-{{-- <link href="{{asset('vendors/admin/product/index/list.css')}}" rel="stylesheet" /> --}}
+<link href="{{asset('vendors/admin/index/list.css')}}" rel="stylesheet" />
 @endsection
 @section('content')
 <div class="container-fluid">
 
     <!-- Page Heading -->
     @include('admin.partials.content-header',['name'=>'Quản lí người dùng','key'=>'Danh sách'])
-    {{-- @if(session()->has('success'))
+    @if(session()->has('success'))
     <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         {{ session()->get('success') }}
@@ -27,7 +27,7 @@
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             {{ session()->get('fail') }}
         </div>
-    @endif --}}
+    @endif
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
@@ -38,6 +38,7 @@
                             <th style="">Tên</th>
                             <th style="">Email</th>
                             <th style="">Số điện thoại</th>
+                            <th style="">Phòng ban</th>
                             <th style=""></th>
                         </tr>
                     </thead>
@@ -48,11 +49,14 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->phone}}</td>
+                            <td>{{$user->getDepartment->department_number}}</td>
                             <td>
-                                {{-- <a href="{{route('tour.edit',['id'=>$tour->id])}}" class="btn btn-primary">Sửa</a>
-                                <a href=""
-                                data-url="{{route('tour.delete',['id'=>$tour->id])}}"
-                                class="btn btn-danger action_delete">Xóa</a> --}}
+                                @if($user->status==0)
+                                <a href="http://"><i class="fas fa-lock"></i>
+                                @else
+                                <a href="http://"><i class="fas fa-unlock"></i>
+                                @endif
+                               
                             </td>
                         </tr>
                         @endforeach 
