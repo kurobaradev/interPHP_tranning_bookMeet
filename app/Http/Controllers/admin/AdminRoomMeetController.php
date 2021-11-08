@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 
 class AdminRoomMeetController extends Controller
 {
-    
+
     use StorageImageTrait;
     private $roomMeets;
 

@@ -18,7 +18,7 @@ class AdminUserController extends Controller
         $users = User::with('getDepartment')->get();
         // $users = $this->user->all();
         // dd($users); 
-       return view('admin.pages.user.index', compact('users'));
+        return view('admin.pages.user.index', compact('users'));
     }
     public function ban($id)
     {

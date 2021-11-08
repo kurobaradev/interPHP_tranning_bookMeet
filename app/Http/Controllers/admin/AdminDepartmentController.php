@@ -25,13 +25,10 @@ class AdminDepartmentController extends Controller
     public function create()
     {
         return view('admin.pages.department.add');
-
     }
     public function edit($id)
     {
         $departments = $this->departments->find($id);
-        return view('admin.pages.department.edit',compact('departments'));
-
+        return view('admin.pages.department.edit', compact('departments'));
     }
 }
- 

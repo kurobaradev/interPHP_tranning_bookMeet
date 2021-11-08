@@ -16,12 +16,12 @@ function actionDelete(event) {
             $.ajax({
                 type: 'GET',
                 url: urlRequest,
-                success: function(data) {
+                success: function (data) {
                     if (data.code == 200) {
                         that.parent().parent().remove();
                     }
                 },
-                error: function() {
+                error: function () {
 
                 }
             })
@@ -33,7 +33,7 @@ function actionDelete(event) {
     });
 }
 
-$(function() {
+(function () {
     $(document).on('click', '.action_delete', actionDelete);
 
 });
