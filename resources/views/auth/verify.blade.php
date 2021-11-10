@@ -1,8 +1,11 @@
 @extends('layouts.app')
-
+@section('css')
+    <link href="{{ asset('vendors/admin/login/login.css') }}" rel="stylesheet" />
+@endsection
 @section('content')
+<section class="login-block">
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Verify Your Email Address') }}</div>
@@ -25,4 +28,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection

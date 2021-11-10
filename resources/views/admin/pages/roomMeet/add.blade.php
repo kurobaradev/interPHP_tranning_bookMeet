@@ -31,8 +31,8 @@
             <div class="col-6">
                 <div class="form-group ">
                     <label>Tên phòng</label>
-                    <input type="text" class="form-control @error('number_room') is-invalid @enderror"
-                        placeholder="Tên phòng họp" name="number_room" value="{{ old('number_room') }}">
+                    <input type="text" class="form-control @error('room_name') is-invalid @enderror"
+                        placeholder="Tên phòng họp" name="room_name" value="{{ old('room_name') }}">
                     {{-- @error('name')
             <div class="alert alert-danger">{{ $message }}</div>
           @enderror --}}
@@ -40,9 +40,9 @@
                 <div class="form-group">
                     <div class="">
                         <label>Số người</label>
-                        <input type="number" class="form-control @error('number_join') is-invalid @enderror"
-                            value="{{ old('number_join') }}" name="number_join">
-                        @error('number_join')
+                        <input type="number" class="form-control @error('room_size') is-invalid @enderror"
+                            value="{{ old('room_size') }}" name="room_size">
+                        @error('room_size')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>

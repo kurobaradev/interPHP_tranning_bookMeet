@@ -5,7 +5,7 @@
 @section('js')
 
     <script src="{{ asset('vendors/sweetAlert2/sweetalert2@10.js') }}"></script>
-    <script src="{{ asset('vendors/action/delete.js') }}"></script>
+    <script src="{{ asset('vendors/Action/delete.js') }}"></script>
 
 @endsection
 @section('css')
@@ -40,7 +40,6 @@
                                 <th style="">Hình ảnh</th>
                                 <th style="">Số phòng</th>
                                 <th style="">Địa chỉ</th>
-                                <th style="">Thành viên</th>
                                 <th style=""></th>
                             </tr>
                         </thead>
@@ -51,37 +50,15 @@
                                     <td><img class="image_100_100" src="{{ $department->feature_image_path }}"
                                             alt="hinh anh"></td>
                                     <td>{{ $department->department_number }}</td>
-                                    <td>{{ $department->address }}</td>
-
-                                    <td><a class="btn" data-toggle="modal" data-target="#myModal"><i
-                                                class="fas fa-eye"> Hiển thị danh sách</i></a></td>
+                                    <td>{{ $department->address }}</td>                                      
                                     <td>
-                                        <a href="{{ route('department.edit', ['id' => $department->id]) }}">
-                                            <i class="fas fa-edit"></i>
-                                            <a href="" data-url="{{ route('department.delete', ['id' => $department->id]) }}" class="text-danger action_delete"><i class="fas fa-trash-alt"></i>
+                                        <a href="{{ route('department.edit', ['id' => $department->id]) }}"><i class="fas fa-edit"></i>
+                                        <a href="" data-url="{{ route('department.delete', ['id' => $department->id]) }}" class="text-danger action_delete"><i class="fas fa-trash-alt"></i>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
-                        <div id="myModal" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Danh sách thành viên phòng ban</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Some text in the modal.</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                        
                     </table>
                 </div>
             </div>

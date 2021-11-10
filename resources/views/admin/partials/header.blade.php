@@ -34,7 +34,7 @@
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#">
+            <a class="nav-link dropdown-toggle" href="{{ route('logout') }}">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Đăng xuất</span>
             </a>
         </li>

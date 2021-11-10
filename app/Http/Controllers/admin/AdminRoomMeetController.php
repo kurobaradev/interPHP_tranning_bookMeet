@@ -40,10 +40,9 @@ class AdminRoomMeetController extends Controller
             DB::beginTransaction();
             // khởi tạo dữ liệu
             $dataRoomMeetCreate = [
-                'number_room' => $request->number_room,
-                'number_join' => $request->number_join,
-                'address' => $request->address,
-                'status' => 0,
+                'room_name' => $request->room_name,
+                'room_size' => $request->room_size,
+                'address' => $request->address
             ];
             $dataUploadfeatureImage = $this->StorageImageUpload($request, 'feature_image_path', 'room_meet');
             if (!empty($dataUploadfeatureImage)) {
@@ -78,8 +77,8 @@ class AdminRoomMeetController extends Controller
             DB::beginTransaction();
             // khởi tạo dữ liệu
             $dataRoomMeetUpdate = [
-                'number_room' => $request->number_room,
-                'number_join' => $request->number_join,
+                'room_name' => $request->room_name,
+                'room_size' => $request->room_size,
                 'address' => $request->address,
                 'status' => 0,
             ];

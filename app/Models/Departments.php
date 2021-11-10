@@ -15,6 +15,7 @@ class Departments extends Model
 
     public function getUser()
     {
-       return $this->belongsTo(Departments::class,'id_department','id');
+       return $this->belongsTo(User::class,'department_id','id');
     }
+    
 }

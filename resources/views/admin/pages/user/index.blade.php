@@ -1,11 +1,11 @@
 @extends('admin.layouts.index')
 @section('title')
-    <title>Quản lí tour</title>
+    <title>Quản lí người dùng</title>
 @endsection
 @section('js')
 
     <script src="{{ asset('vendors/sweetAlert2/sweetalert2@10.js') }}"></script>
-    <script src="{{ asset('vendors/action/delete.js') }}"></script>
+    <script src="{{ asset('vendors/action/ban.js') }}"></script>
 
 @endsection
 @section('css')
@@ -52,9 +52,9 @@
                                     <td>{{ $user->getDepartment->department_number }}</td>
                                     <td>
                                         @if ($user->status == 0)
-                                            <a href="http://"><i class="fas fa-lock"></i>
+                                            <a  class="btn text-primary" href="{{route('users.ban', ['id' => $user->id])}}"><i class="fas fa-unlock"></i>
                                             @else
-                                                <a href="http://"><i class="fas fa-unlock"></i>
+                                                <a  class="btn text-danger" href="{{route('users.unban', ['id' => $user->id])}}"><i class="fas fa-lock"></i>
                                         @endif
 
                                     </td>

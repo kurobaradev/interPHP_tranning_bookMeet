@@ -47,7 +47,7 @@
      {{-- end quản lí Quản lí phòng họp --}}
      {{-- quản lí Quản lí đặt lịch --}}
      <li class="nav-item">
-         <a class="nav-link collapsed" href="#">
+            <a class="nav-link collapsed" href="{{ Route('ticket.index') }}">
              <i class="fas fa-fw fa-table"></i>
              <span>Quản lí đặt lịch</span>
          </a>

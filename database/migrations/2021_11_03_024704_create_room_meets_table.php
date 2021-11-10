@@ -15,12 +15,12 @@ class CreateRoomMeetsTable extends Migration
     {
         Schema::create('room_meets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('number_room');
-            $table->integer('number_join');
+            $table->string('room_name');
+            $table->integer('room_size');
             $table->string('address');
             $table->string('feature_image_path')->nullable();
             $table->string('feature_image_name')->nullable();
-            $table->integer("status");
+            $table->integer("status")->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

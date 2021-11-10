@@ -49,8 +49,8 @@
                                 <tr>
 
                                     <td><img class="image_100_100" src="{{ $roomMeet->feature_image_path }}" alt="#"></td>
-                                    <td>{{ $roomMeet->number_room }}</td>
-                                    <td>{{ $roomMeet->number_join }}</td>
+                                    <td>{{ $roomMeet->room_name }}</td>
+                                    <td>{{ $roomMeet->room_size }}</td>
                                     <td>{{ $roomMeet->address }}</td>
                                     <td>{{ $roomMeet->status }}</td>
                                     <td>

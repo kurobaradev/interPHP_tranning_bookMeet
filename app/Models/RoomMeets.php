@@ -11,4 +11,9 @@ class RoomMeets extends Model
     use HasFactory;
     use SoftDeletes;
     protected $guarded=[];
+
+    public function ticker()
+    {
+        return $this->hasOne(Tickets::class);
+    }
 }

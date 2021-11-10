@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\BookRoomController;
 use App\Http\Controllers\client\RoomController;
+// use App\Models\Department;
+use App\Models\Departments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::post('ajax',[RoomController::class,'ajaxRequest'])->name('book.getday');
-Route::get('/room/{id}', [RoomController::class, 'book'])->name('room.book');
-Route::get('/roomgetday', [TicketController::class, 'dayRequest'])->name('ajax.request');
+Route::get('/room/{id}', [BookRoomController::class, 'getTicketBookRoom'])->name('api.bookroom');
+Route::get('/department', function () {
+    return Departments::all();
+});
