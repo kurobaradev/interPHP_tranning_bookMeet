@@ -15,7 +15,7 @@
         <!-- Page Heading -->
         @include('admin.partials.content-header',['name'=>'Quản lí phòng họp','key'=>'Thêm phòng họp'])
         <!-- DataTales Example -->
-        <form action="{{ route('room.store') }}" method="POST" enctype="multipart/form-data"
+        <form action="{{ route('rooms.store') }}" method="POST" enctype="multipart/form-data"
             class="row  d-flex justify-content-center">
             @csrf
             <div class="form-group col-6">

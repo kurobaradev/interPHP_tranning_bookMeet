@@ -13,7 +13,7 @@
         <!-- Page Heading -->
         @include('admin.partials.content-header',['name'=>'Quản lí phòng họp','key'=>'Sửa phòng họp'])
         <!-- DataTales Example -->
-        <form action="{{ route('room.update', ['id' => $room->id]) }}" method="POST" enctype="multipart/form-data"
+        <form action="{{ route('rooms.update', ['id' => $room->id]) }}" method="POST" enctype="multipart/form-data"
             class="row d-flex justify-content-center">
             @csrf
 

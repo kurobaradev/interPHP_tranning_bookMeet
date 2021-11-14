@@ -54,7 +54,7 @@ class AdminRoomController extends Controller
             $this->room->create($dataRoomCreate);
             DB::commit();
             session()->flash('success', 'tạo thành công !.');
-            return redirect(route('room.index'));
+            return redirect(route('rooms.index'));
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error("message:" . $exception->getMessage() . 'Line' . $exception->getLine());
@@ -92,7 +92,7 @@ class AdminRoomController extends Controller
             $this->room->find($id)->update($dataRoomUpdate);
             DB::commit();
             session()->flash('success', 'Cập nhật thành công !.');
-            return redirect(route('room.index'));
+            return redirect(route('rooms.index'));
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error("message:" . $exception->getMessage() . 'Line' . $exception->getLine());

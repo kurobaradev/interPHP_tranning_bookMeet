@@ -14,11 +14,11 @@ use Illuminate\Queue\SerializesModels;
 class OrderRoomMeet extends Mailable
 {
     use Queueable, SerializesModels;
-    public $Ticket;
+    public $ticket;
 
     public function __construct(Ticket $Ticket)
     {
-        $this->Ticket = $Ticket;
+        $this->ticket = $Ticket;
     }
 
     public function build()

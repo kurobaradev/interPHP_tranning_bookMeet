@@ -29,7 +29,7 @@
             </div>
         @endif
 
-        <a class="text-danger btn" href="{{ route('room.create') }}"><i class="fas fa-plus"> Thêm phòng họp</i></a>
+        <a class="text-danger btn" href="{{ route('rooms.create') }}"><i class="fas fa-plus"> Thêm phòng họp</i></a>
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
@@ -55,9 +55,9 @@
                                     <td>{{ $room->status }}</td>
                                     <td>
                                         <!-- DataTales Example -->
-                                        <a href="{{ route('room.edit', ['id' => $room->id]) }}"
+                                        <a href="{{ route('rooms.edit', ['id' => $room->id]) }}"
                                             class="text-primary"><i class="fas fa-edit"></i>
-                                            <a href="" data-url="{{ route('room.delete', ['id' => $room->id]) }}"
+                                            <a href="" data-url="{{ route('rooms.delete', ['id' => $room->id]) }}"
                                                 class="text-danger action_delete"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>

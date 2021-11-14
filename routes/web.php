@@ -13,31 +13,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    dd(Department::all());
-    return ;
-});
-// user
 Auth::routes();
-
-Route::get('/', [RoomController::class, 'index'])->name('room.index');
 
 // middlwerare checklogin
 Route::middleware(['CheckLogin'])->group(function () {
 
     // client get
     // get all room
-    Route::get('/', [RoomController::class, 'index'])->name('room.index');
+    Route::get('/', [RoomController::class, 'index'])->name('home.index');
 
     // take room by id
-    Route::get('/room/{id}', [RoomController::class, 'book'])->name('room.book');
+    Route::get('/rooms/{id}', [RoomController::class, 'book'])->name('room.book');
 
     //get day of room
-    Route::get('/roomgetday', [TicketController::class, 'dayRequest'])->name('ajax.request');
-
-    // test
-    Route::get('/booktesst', [TicketController::class, 'booka'])->name('room.booktesst');
-    // client post
 
     Route::post('/bookroom', [TicketController::class, 'bookroom'])->name('room.bookroom');
 
@@ -56,15 +44,15 @@ Route::middleware(['CheckLogin'])->group(function () {
         });
 
         // manager  room
-        Route::prefix('/room')->group(function () {
+        Route::prefix('/rooms')->group(function () {
             // get
-            Route::get('/', [AdminRoomController::class, 'index'])->name('room.index');
-            Route::get('/create', [AdminRoomController::class, 'create'])->name('room.create');
-            Route::get('/edit/{id}', [AdminRoomController::class, 'edit'])->name('room.edit');
-            Route::get('/delete/{id}', [AdminRoomController::class, 'delete'])->name('room.delete');
+            Route::get('/', [AdminRoomController::class, 'index'])->name('rooms.index');
+            Route::get('/create', [AdminRoomController::class, 'create'])->name('rooms.create');
+            Route::get('/edit/{id}', [AdminRoomController::class, 'edit'])->name('rooms.edit');
+            Route::get('/delete/{id}', [AdminRoomController::class, 'delete'])->name('rooms.delete');
             // post
-            Route::post('/store', [AdminRoomController::class, 'store'])->name('room.store');
-            Route::post('/update/{id}', [AdminRoomController::class, 'update'])->name('room.update');
+            Route::post('/store', [AdminRoomController::class, 'store'])->name('rooms.store');
+            Route::post('/update/{id}', [AdminRoomController::class, 'update'])->name('rooms.update');
         });
 
         // manager Department room
@@ -84,7 +72,7 @@ Route::middleware(['CheckLogin'])->group(function () {
         // manager ticket join  room
         Route::prefix('/ticket')->group(function () {
             // get
-            Route::get('/', [AdminTicketController::class, 'index'])->name('ticket.index');
+            Route::get('/', [AdminTicketController::class, 'index'])->name('tickets.index');
             // Route::get('/create', [AdminDepartmentController::class, 'create'])->name('department.create');
             // Route::get('/edit/{id}', [AdminDepartmentController::class, 'edit'])->name('department.edit');
             // Route::get('/delete/{id}', [AdminDepartmentController::class, 'delete'])->name('department.delete');

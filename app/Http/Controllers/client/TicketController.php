@@ -55,7 +55,7 @@ class TicketController extends Controller
         $date = $request->date;
         $start = $date.' '.$timeSlot[0];
         $end = $date.' '.$timeSlot[1];
-        $room_id = (int)$request->room_id;
+        $room_id = $request->room_id;
         $startbook = $start;
         $endbook = $end;
 
@@ -66,10 +66,11 @@ class TicketController extends Controller
             'date'=> $date,
             'user_id'=> Auth::user()->id,
             ]);
+            // dd($dataOderCreate);
         Mail::to(Auth::user()->email)->send(new OrderRoomMeet($dataOderCreate));
         $dataOderCreate->save();
         session()->flash('success', 'Đặt tour thành công !.');
-        return redirect(route('room.index'));
+        return redirect(route('home.index'));
 
     }
 }

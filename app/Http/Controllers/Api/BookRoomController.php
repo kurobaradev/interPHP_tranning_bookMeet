@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tickets;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
 class BookRoomController extends Controller
@@ -66,7 +66,7 @@ class BookRoomController extends Controller
     public function getTicketBookRoom(Request $request)
     {
         $idRoom = $request->room_id;
-        $Room = Tickets::where($idRoom)->get();
+        $Room = Ticket::where($idRoom)->get();
         return response()->json($Room);
     }
 }

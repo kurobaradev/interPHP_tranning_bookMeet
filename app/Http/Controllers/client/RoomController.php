@@ -4,8 +4,6 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Room;
-use DateTime;
-use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
@@ -22,8 +20,7 @@ class RoomController extends Controller
     }
     public function book($id)
     {
-        $room = Room::find($id);
+        $room = $this->room->find($id);
         return view('client.book', compact('room'));
-        // return response()->json( $room);
     }
 }

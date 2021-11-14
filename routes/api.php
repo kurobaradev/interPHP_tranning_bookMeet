@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\Api\BookRoomController;
 use App\Http\Controllers\client\RoomController;
-// use App\Models\Department;
-use App\Models\Departments;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/room/{id}', [BookRoomController::class, 'getTicketBookRoom'])->name('api.bookroom');
 Route::get('/department', function () {
-    return Departments::all();
+    return Department::all();
 });

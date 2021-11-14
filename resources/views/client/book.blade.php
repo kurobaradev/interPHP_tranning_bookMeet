@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('css')
-    
+
 @endsection
 @section('js')
 
@@ -38,14 +38,14 @@
                                     // console.log(e[n].end);
                                 // console.log(e[n].start);
                                 }
-                             
+
                             }
                         }
                     });
                 }
             });
-    
-    
+
+
         </script>
 @endsection
 @section('content')
@@ -55,8 +55,8 @@
                 <div class="card ">
                     <img class="card-img-top" src="{{ $room->feature_image_path }}" />
                     <div class="card-body">
-                        <h4 class="card-title"><strong>Phòng</strong> : {{ $room->room_name }}</h4>
-                        <h6 class="card-subtitle mb-2"><strong>Số ghế</strong> : {{ $room->room_size }}</h6>
+                        <h4 class="card-title"><strong>Phòng</strong> : {{ $room->name }}</h4>
+                        <h6 class="card-subtitle mb-2"><strong>Số ghế</strong> : {{ $room->size }}</h6>
                         <p class="card-text"><strong>Địa chỉ</strong> : {{ $room->address }}</p>
                     </div>
                 </div>
@@ -87,16 +87,16 @@
                         @endfor
                     </div>
                     {{-- bắt lỗi --}}
-        
+
                     {{-- end radio --}}
                 </div>
                 <button class="btn btn-primary ">Book Room</button>
             </form>
 
         </div>
-        
+
 
     </div>
 
-    
+
 @endsection
