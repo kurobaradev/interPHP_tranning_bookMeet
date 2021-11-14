@@ -7,11 +7,6 @@
 @endsection
 @section('content')
     <div class="container-fluid">
-        {{-- @error('title') is-invalid @enderror
-  value="{{old('title')}}
-  @error('title')
-    <div class="alert alert-danger">{{ $message }}</div>
-  @enderror --}}
         <!-- Page Heading -->
         @include('admin.partials.content-header',['name'=>'Quản lí phòng họp','key'=>'Thêm phòng họp'])
         <!-- DataTales Example -->
@@ -31,9 +26,9 @@
                     <label>Tên phòng</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror"
                         placeholder="Tên phòng họp" name="name" value="{{ old('name') }}">
-                    {{-- @error('name')
-            <div class="alert alert-danger">{{ $message }}</div>
-          @enderror --}}
+                    @error('name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <div class="">
@@ -57,7 +52,6 @@
                 </div>
             </div>
             <br>
-
             <button type="submit" class="btn btn-primary">Lưu thông tin</button>
         </form>
 

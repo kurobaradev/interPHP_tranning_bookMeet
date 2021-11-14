@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDepartmentRequest;
 use App\Models\Department;
 use App\Traits\StorageImageTrait;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class AdminDepartmentController extends Controller
         return view('admin.pages.department.add');
     }
 
-    public function store(Request $request)
+    public function store(StoreDepartmentRequest $request)
     {
         try {
             DB::beginTransaction();

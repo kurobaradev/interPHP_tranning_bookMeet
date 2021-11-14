@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRoomRequest;
 use App\Models\Room;
 use App\Traits\StorageImageTrait;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class AdminRoomController extends Controller
     }
 
     // đẩy dữ liệu lên database
-    public function store(Request $request)
+    public function store(StoreRoomRequest $request)
     {
         try {
             DB::beginTransaction();

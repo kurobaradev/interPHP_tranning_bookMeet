@@ -3,11 +3,7 @@
 
 @endsection
 @section('js')
-
-    {{-- <script src="{{ asset('vendors/action/getTime.js') }}"></script> --}}
     <script>
-        //    var day = document.getElementById('getData').value;
-            // var div1 = document.getElementById('getDate')
             var url = window.location.pathname;
             var room_id = url.split('/')[2];
             $.ajax({
@@ -35,8 +31,6 @@
                                 // nếu dữ liệu trả về = time thì ẩn đi
                                 if(e[n].start === time+':00'){
                                     $('label.btn.btn-outline-primary.'+i).addClass('disabled');
-                                    // console.log(e[n].end);
-                                // console.log(e[n].start);
                                 }
 
                             }
@@ -70,11 +64,9 @@
                     <input type="hidden" name="room_id" value="{{ $room->id }}">
                     <input min="<?php echo (new \DateTime())->format('Y-m-d'); ?>" type="date" class="form-control col-7" name="date" id="mydate"
                         aria-describedby="helpId" placeholder="">
-                    <small id="helpId" class="form-text text-danger">
-                        @error('datebook')
-                            {{ $message }}
-                        @enderror
-                    </small>
+                    @error('date')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <input type="hidden" id="time">
                     {{-- radio --}}
                     {{-- khởi tạo danh sách thời gian và chèn vào biến class 1 tham số i để sau bắt sự kiện thay đổi --}}
@@ -87,7 +79,9 @@
                         @endfor
                     </div>
                     {{-- bắt lỗi --}}
-
+                    @error('timeSlot')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     {{-- end radio --}}
                 </div>
                 <button class="btn btn-primary ">Book Room</button>
