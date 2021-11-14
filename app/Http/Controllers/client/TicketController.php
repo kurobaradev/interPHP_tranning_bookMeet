@@ -5,6 +5,7 @@ namespace App\Http\Controllers\client;
 use App\Http\Controllers\Controller;
 use App\Mail\OrderRoomMeet;
 use App\Models\RoomMeets;
+use App\Models\Ticket;
 use App\Models\Tickets;
 use DateInterval;
 use DateTime;
@@ -21,7 +22,7 @@ class TicketController extends Controller
         // dd($timeSlot);
         $id_room = (string) $request->id_room;
         $date = (string) $request->date;
-        $getDate = Tickets::where('id_room', $id_room)
+        $getDate = Ticket::where('id_room', $id_room)
             ->where('date', $date)
             ->pluck('start');
         return response()->json([$timeSlot, $getDate]);;
@@ -57,8 +58,8 @@ class TicketController extends Controller
         $room_id = (int)$request->room_id;
         $startbook = $start;
         $endbook = $end;
- 
-        $dataOderCreate = Tickets::create([
+
+        $dataOderCreate = Ticket::create([
             'room_id'=> $room_id,
             'start'=> $startbook,
             'end'=> $endbook,
@@ -69,6 +70,6 @@ class TicketController extends Controller
         $dataOderCreate->save();
         session()->flash('success', 'Đặt tour thành công !.');
         return redirect(route('room.index'));
-      
+
     }
 }

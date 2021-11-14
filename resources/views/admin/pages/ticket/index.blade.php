@@ -49,13 +49,13 @@
                                 <tr>
 
                                     <td>{{ $ticket->id }}</td>
-                                    <td><img class="image_100_100" src="{{  $ticket->roomMeet->feature_image_path }}" alt="#"></td>
-                                    <td>{{ $ticket->roomMeet->room_name }}</td>
+                                    <td><img class="image_100_100" src="{{  $ticket->room->feature_image_path }}" alt="#"></td>
+                                    <td>{{ $ticket->room->name }}</td>
                                     <td>{{ $ticket->user->name }}</td>
                                     <td>{{date("H:i", strtotime($ticket->start))}}</td>
                                     <td>{{date("H:i", strtotime($ticket->start))}}</td>
                                     <td>{{date("d/m/Y", strtotime($ticket->date))}}</td>
-                                
+
                                 </tr>
                             @endforeach
                         </tbody>

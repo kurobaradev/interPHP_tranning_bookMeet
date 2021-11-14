@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,9 +12,9 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, CascadeSoftDeletes;
 
-    protected $cascadeDeletes = ['departments'];
+    protected $cascadeDeletes = ['tickets'];
     /**
      * The attributes that are mass assignable.
      *
@@ -53,7 +54,7 @@ class User extends Authenticatable
     }
 
     public function tickets(){
-        return $this->hasMany(Tickets::class,'room_id','id');
+        return $this->hasMany(Ticket::class,'room_id','id');
     }
 
 

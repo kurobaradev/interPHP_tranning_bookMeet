@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ticket extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes,CascadeSoftDeletes;
     protected $guarded=[];
 
+    protected $dates = ['deleted_at'];
     public function user()
     {
         return $this->belongsTo(User::class,'user_id','id');
@@ -19,6 +20,6 @@ class Ticket extends Model
 
     public function room()
     {
-        return $this->belongsTo(RoomMeets::class,'room_id','id');
+        return $this->belongsTo(Room::class,'room_id','id');
     }
 }
