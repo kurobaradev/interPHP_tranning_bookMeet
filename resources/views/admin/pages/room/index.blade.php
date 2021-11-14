@@ -49,8 +49,8 @@
                                 <tr>
 
                                     <td><img class="image_100_100" src="{{ $room->feature_image_path }}" alt="#"></td>
-                                    <td>{{ $room->room_name }}</td>
-                                    <td>{{ $room->room_size }}</td>
+                                    <td>{{ $room->name }}</td>
+                                    <td>{{ $room->size }}</td>
                                     <td>{{ $room->address }}</td>
                                     <td>{{ $room->status }}</td>
                                     <td>
