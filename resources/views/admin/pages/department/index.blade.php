@@ -54,10 +54,10 @@
                                 <td>{{ $department->address }}</td>
 
                                 <td>
-                                    <a href="#" class="btn" data-toggle="modal" data-target="#data{{ $department->name }}">
+                                    <a href="#" class="btn" data-toggle="modal" data-target="#data{{ $department->id }}">
                                         <i class="fa fa-eye" aria-hidden="true"></i> Xem danh sách thành viên
                                     </a>
-                                    <div class="modal fade" id="data{{ $department->name }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal fade" id="data{{ $department->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                           <div class="modal-content">
                                             <div class="modal-header">
@@ -85,8 +85,12 @@
 
                                 </td>
                                 <td>
-                                    <a href="{{ route('departments.edit', ['id' => $department->id]) }}"><i class="fas fa-edit"></i>
-                                    <a data-url="{{ route('departments.delete', ['id' => $department->id]) }}" class="text-danger action_delete"><i class="fas fa-trash-alt"></i>
+                                    <a href="{{ route('departments.edit', ['id' => $department->id]) }}"><i class="fas fa-edit"></i></a>
+                                    @if (count($department->users))
+                                        <a></a>
+                                        @else
+                                        <a data-url="{{ route('departments.delete', ['id' => $department->id]) }}" class="text-danger action_delete"><i class="fas fa-trash-alt"></i>
+                                            @endif
                                 </td>
                             </tr>
                         @endforeach

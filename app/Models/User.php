@@ -47,17 +47,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getDepartment()
+    public function department()
     {
-        return $this->belongsTo(Departments::class,'department_id','id');
+        return $this->belongsTo(Department::class,'department_id','id');
     }
-    // public function department()
-    // {
-    //     return $this->hasMany(Departments::class,'department_id','id');
-    // }
 
-    public function getTicket(){
-        return $this->hasMany(Tickets::class);
+    public function tickets(){
+        return $this->hasMany(Tickets::class,'room_id','id');
     }
 
 

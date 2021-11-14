@@ -12,8 +12,8 @@ class Room extends Model
     use SoftDeletes;
     protected $guarded=[];
 
-    public function ticker()
+    public function tickers()
     {
-        return $this->hasOne(Tickets::class);
+        return $this->hasOne(Tickets::class,'room_id','id');
     }
 }

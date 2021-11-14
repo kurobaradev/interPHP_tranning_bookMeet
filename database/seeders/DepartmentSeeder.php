@@ -15,7 +15,7 @@ class DepartmentSeeder extends Seeder
     public function run()
     {
         DB::table('departments')->insert([
-            'name' => 'PS!',
+            'name' => 'Phòng ban số 1',
             'address' => '59 Bùi Xương Trạch - Đà Nẵng',
         ]);
     }

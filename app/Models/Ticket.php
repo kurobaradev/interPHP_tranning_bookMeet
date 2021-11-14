@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Tickets extends Model
+class Ticket extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -17,7 +17,7 @@ class Tickets extends Model
         return $this->belongsTo(User::class,'user_id','id');
     }
 
-    public function roomMeet()
+    public function room()
     {
         return $this->belongsTo(RoomMeets::class,'room_id','id');
     }
