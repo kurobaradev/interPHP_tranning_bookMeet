@@ -21,10 +21,10 @@ class AdminDepartmentController extends Controller
     }
     public function index()
     {
-        DB::enableQueryLog();
+        // DB::enableQueryLog();
         $departments = Departments::all();
         // $posts = Departments::find(1)->getUser()->name;
-        $query = DB::getQueryLog();
+        // $query = DB::getQueryLog();
 
 // dd($query);
         // dd($posts);
@@ -40,20 +40,21 @@ class AdminDepartmentController extends Controller
         // $path = $request->file('feature_image_path')->storeAs('tour');
         try {
             DB::beginTransaction();
-            $dataDepartmentCreate = [
+            $data_department_create = [
                 'department_number' => $request->department_number,
                 'address' => $request->address,
                 'number_size' => $request->description,
             ];
-            $dataUploadfeatureImage = $this->StorageImageUpload($request, 'feature_image_path', 'department');
-            if (!empty($dataUploadfeatureImage)) {
-                $dataDepartmentCreate['feature_image_name'] = $dataUploadfeatureImage['file_name'];
-                $dataDepartmentCreate['feature_image_path'] = $dataUploadfeatureImage['file_path'];
+            $data_upload_feature_image = $this->StorageImageUpload($request, 'feature_image_path', 'department');
+            if (!empty($data_upload_feature_image)) {
+                $data_department_create['feature_image_name'] = $data_upload_feature_image['file_name'];
+                $data_department_create['feature_image_path'] = $data_upload_feature_image['file_path'];
             }
             // dd($dataCarCreate);
-            $this->departments->create($dataDepartmentCreate);
+            $this->departments->create($data_department_create);
             DB::commit();
             session()->flash('success', 'tạo thành công !.');
+
             return redirect(route('department.index'));
         } catch (\Exception $exception) {
             DB::rollBack();
@@ -73,18 +74,18 @@ class AdminDepartmentController extends Controller
     {
         try {
             DB::beginTransaction();
-            $dataDepartmentUpdate = [
+            $data_department_update = [
                 'department_number' => $request->department_number,
                 'address' => $request->address,
                 'number_size' => $request->description,
             ];
-            $dataUploadfeatureImage = $this->StorageImageUpload($request, 'feature_image_path', 'department');
-            if (!empty($dataUploadfeatureImage)) {
-                $dataDepartmentUpdate['feature_image_name'] = $dataUploadfeatureImage['file_name'];
-                $dataDepartmentUpdate['feature_image_path'] = $dataUploadfeatureImage['file_path'];
+            $data_upload_feature_image = $this->StorageImageUpload($request, 'feature_image_path', 'department');
+            if (!empty($data_upload_feature_image)) {
+                $data_department_update['feature_image_name'] = $data_upload_feature_image['file_name'];
+                $data_department_update['feature_image_path'] = $data_upload_feature_image['file_path'];
             }
 
-            $this->departments->find($id)->update($dataDepartmentUpdate);
+            $this->departments->find($id)->update($data_department_update);
             $departments = $this->departments->find($id);
             DB::commit();
             session()->flash('success', 'Cập nhật thành công !.');

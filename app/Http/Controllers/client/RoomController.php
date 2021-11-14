@@ -21,18 +21,4 @@ class RoomController extends Controller
         return view('client.book', compact('room'));
         // return response()->json( $room);
     }
-    public function bookroom(Request $request)
-    {
-        $room_id = $request->room_id;
-        $date = $request->date;
-        $time = $request->timeSlot;
-        $timeSlot =  explode('?',$time);
-        $start = $timeSlot[0];
-        $end = $timeSlot[1];
-        $startbook = $start;
-        $endbook = $end;
-        dd($room_id);
-
-      
-    }
 }

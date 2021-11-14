@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class DepartmentSeeder extends Seeder
 {
@@ -16,7 +15,7 @@ class DepartmentSeeder extends Seeder
     public function run()
     {
         DB::table('departments')->insert([
-            'department_number' => 'PS!',
+            'name' => 'PS!',
             'address' => '59 Bùi Xương Trạch - Đà Nẵng',
         ]);
     }

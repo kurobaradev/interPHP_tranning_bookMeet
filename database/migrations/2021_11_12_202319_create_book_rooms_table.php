@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTicketsTable extends Migration
+class CreateBookRoomsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,21 @@ class CreateTicketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('book_rooms', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreignId('room_id')
+            $table->bigInteger('room_id')->unsigned();
+            $table->foreign('room_id')
                 ->references('id')
-                ->on('room_meets')
+                ->on('rooms')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->date('date');  
+            $table->date('date');
             $table->dateTime('start');
             $table->dateTime('end');
             $table->integer("status")->default(0);
@@ -41,6 +43,6 @@ class CreateTicketsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('book_rooms');
     }
 }

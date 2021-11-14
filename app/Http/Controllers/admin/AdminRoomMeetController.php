@@ -44,10 +44,10 @@ class AdminRoomMeetController extends Controller
                 'room_size' => $request->room_size,
                 'address' => $request->address
             ];
-            $dataUploadfeatureImage = $this->StorageImageUpload($request, 'feature_image_path', 'room_meet');
-            if (!empty($dataUploadfeatureImage)) {
-                $dataRoomMeetCreate['feature_image_name'] = $dataUploadfeatureImage['file_name'];
-                $dataRoomMeetCreate['feature_image_path'] = $dataUploadfeatureImage['file_path'];
+            $dataUploadFeatureImage = $this->StorageImageUpload($request, 'feature_image_path', 'room_meet');
+            if (!empty($dataUploadFeatureImage)) {
+                $dataRoomMeetCreate['feature_image_name'] = $dataUploadFeatureImage['file_name'];
+                $dataRoomMeetCreate['feature_image_path'] = $dataUploadFeatureImage['file_path'];
             }
             // dd($dataRoomMeetCreate);
             // tạo dữ liệu
@@ -76,20 +76,20 @@ class AdminRoomMeetController extends Controller
         try {
             DB::beginTransaction();
             // khởi tạo dữ liệu
-            $dataRoomMeetUpdate = [
+            $data_room_meet_update = [
                 'room_name' => $request->room_name,
                 'room_size' => $request->room_size,
                 'address' => $request->address,
                 'status' => 0,
             ];
-            $dataUploadfeatureImage = $this->StorageImageUpload($request, 'feature_image_path', 'room_meet');
-            if (!empty($dataUploadfeatureImage)) {
-                $dataRoomMeetUpdate['feature_image_name'] = $dataUploadfeatureImage['file_name'];
-                $dataRoomMeetUpdate['feature_image_path'] = $dataUploadfeatureImage['file_path'];
+            $dataUploadFeatureImage = $this->StorageImageUpload($request, 'feature_image_path', 'room_meet');
+            if (!empty($dataUploadFeatureImage)) {
+                $data_room_meet_update['feature_image_name'] = $dataUploadFeatureImage['file_name'];
+                $data_room_meet_update['feature_image_path'] = $dataUploadFeatureImage['file_path'];
             }
-            // dd($dataRoomMeetUpdate);
+            // dd($data_room_meet_update);
             // tìm phòng có id và bắt đầu cập nhật
-            $this->roomMeets->find($id)->update($dataRoomMeetUpdate);
+            $this->roomMeets->find($id)->update($data_room_meet_update);
             DB::commit();
             session()->flash('success', 'Cập nhật thành công !.');
             return redirect(route('room-meet.index'));

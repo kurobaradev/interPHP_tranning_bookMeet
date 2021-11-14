@@ -18,7 +18,7 @@ class AdminUserController extends Controller
     public function index()
     {
         $users = User::with('getDepartment')->get();
-       
+
         return view('admin.pages.user.index', compact('users'));
     }
 
@@ -38,8 +38,8 @@ class AdminUserController extends Controller
             } catch (\Exception $exception) {
                 Log::error("message:" . $exception->getMessage() . 'Line' . $exception->getLine());
             }
-                  
-       
+
+
     }
     public function unban($id)
     {
@@ -55,7 +55,7 @@ class AdminUserController extends Controller
             return redirect(route('users.index'));
         } catch (\Exception $exception) {
             Log::error("message:" . $exception->getMessage() . 'Line' . $exception->getLine());
-          
+
         }
     }
 
