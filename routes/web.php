@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminDepartmentController;
-use App\Http\Controllers\admin\AdminRoomMeetController;
+use App\Http\Controllers\admin\AdminRoomController;
 use App\Http\Controllers\admin\AdminTicketController;
 use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\client\RoomController;
@@ -28,25 +28,25 @@ Route::middleware(['CheckLogin'])->group(function () {
     // client get
     // get all room
     Route::get('/', [RoomController::class, 'index'])->name('room.index');
-    
+
     // take room by id
     Route::get('/room/{id}', [RoomController::class, 'book'])->name('room.book');
-    
-    //get day of room 
+
+    //get day of room
     Route::get('/roomgetday', [TicketController::class, 'dayRequest'])->name('ajax.request');
-    
+
     // test
     Route::get('/booktesst', [TicketController::class, 'booka'])->name('room.booktesst');
     // client post
-    
+
     Route::post('/bookroom', [TicketController::class, 'bookroom'])->name('room.bookroom');
 
     //  admin
     Route::prefix('/admin')->group(function () {
-        
-        //dashboard 
+
+        //dashboard
         Route::get('/', [AdminController::class, 'index'])->name('dashboard.index');
-        
+
         // manager user
         Route::prefix('/users')->group(function () {
             Route::get('/', [AdminUserController::class, 'index'])->name('users.index');
@@ -55,16 +55,16 @@ Route::middleware(['CheckLogin'])->group(function () {
             // Route::post('/', [AdminUserController::class, 'unban'])->name('unban.index');
         });
 
-        // manager Meet room
-        Route::prefix('/room-meet')->group(function () {
+        // manager  room
+        Route::prefix('/room')->group(function () {
             // get
-            Route::get('/', [AdminRoomMeetController::class, 'index'])->name('room-meet.index');
-            Route::get('/create', [AdminRoomMeetController::class, 'create'])->name('room-meet.create');
-            Route::get('/edit/{id}', [AdminRoomMeetController::class, 'edit'])->name('room-meet.edit');
-            Route::get('/delete/{id}', [AdminRoomMeetController::class, 'delete'])->name('room-meet.delete');
+            Route::get('/', [AdminRoomController::class, 'index'])->name('room.index');
+            Route::get('/create', [AdminRoomController::class, 'create'])->name('room.create');
+            Route::get('/edit/{id}', [AdminRoomController::class, 'edit'])->name('room.edit');
+            Route::get('/delete/{id}', [AdminRoomController::class, 'delete'])->name('room.delete');
             // post
-            Route::post('/store', [AdminRoomMeetController::class, 'store'])->name('room-meet.store');
-            Route::post('/update/{id}', [AdminRoomMeetController::class, 'update'])->name('room-meet.update');
+            Route::post('/store', [AdminRoomController::class, 'store'])->name('room.store');
+            Route::post('/update/{id}', [AdminRoomController::class, 'update'])->name('room.update');
         });
 
         // manager Department room
@@ -79,7 +79,7 @@ Route::middleware(['CheckLogin'])->group(function () {
             Route::post('/update/{id}', [AdminDepartmentController::class, 'update'])->name('department.update');
         });
 
-        // manager ticket join Meet room
+        // manager ticket join  room
         Route::prefix('/ticket')->group(function () {
             // get
             Route::get('/', [AdminTicketController::class, 'index'])->name('ticket.index');
@@ -153,25 +153,25 @@ Route::middleware(['CheckLogin'])->group(function () {
 // Route::get('searchUser','App\Http\Controllers\UserController@search')
 // ->middleware('isLogin')
 // ->name('user.search');
-// //meetroom
-// Route::get('/meetroom', 'App\Http\Controllers\MeetRoomController@index')
+// //room
+// Route::get('/room', 'App\Http\Controllers\RoomController@index')
 // ->middleware('isLogin')
-// ->name('meetroom.get');
-// Route::post('/insert-meet-room', 'App\Http\Controllers\MeetRoomController@inserts')
+// ->name('room.get');
+// Route::post('/insert--room', 'App\Http\Controllers\RoomController@inserts')
 // ->middleware('isLogin')
-// ->name('meetroom.post');
-// Route::get('delete-meetroom/{id}','App\Http\Controllers\MeetRoomController@deletes')
+// ->name('room.post');
+// Route::get('delete-room/{id}','App\Http\Controllers\RoomController@deletes')
 // ->middleware('isLogin')
-// ->name('meetroom.delete');
-// Route::get('edit-meetroom/{id}','App\Http\Controllers\MeetRoomController@edits')
+// ->name('room.delete');
+// Route::get('edit-room/{id}','App\Http\Controllers\RoomController@edits')
 // ->middleware('isLogin')
-// ->name('meetroom.edit');
-// Route::post('update-meetroom','App\Http\Controllers\MeetRoomController@updates')
+// ->name('room.edit');
+// Route::post('update-room','App\Http\Controllers\RoomController@updates')
 // ->middleware('isLogin')
-// ->name('meetroom.update');
-// Route::get('searchMeetRoom','App\Http\Controllers\MeetRoomController@search')
+// ->name('room.update');
+// Route::get('searchRoom','App\Http\Controllers\RoomController@search')
 // ->middleware('isLogin')
-// ->name('meetroom.search');
+// ->name('room.search');
 
 // //bookroom
 // Route::get('book-room', 'App\Http\Controllers\BookroomController@index')

@@ -13,14 +13,14 @@
         <!-- Page Heading -->
         @include('admin.partials.content-header',['name'=>'Quản lí phòng họp','key'=>'Sửa phòng họp'])
         <!-- DataTales Example -->
-        <form action="{{ route('room-meet.update', ['id' => $roomMeets->id]) }}" method="POST" enctype="multipart/form-data"
+        <form action="{{ route('room.update', ['id' => $room->id]) }}" method="POST" enctype="multipart/form-data"
             class="row d-flex justify-content-center">
             @csrf
 
             <div class="form-group col-6">
                 <div class="col-md-12">
                     <div class="row">
-                        <img class="image_edit_tour" src="{{ $roomMeets->feature_image_path }} " alt=""
+                        <img class="image_edit_tour" src="{{ $room->feature_image_path }} " alt=""
                             style="width: 300px;">
                     </div>
                 </div>
@@ -31,8 +31,8 @@
             <div class="col-6">
                 <div class="form-group ">
                     <label>Tên phòng</label>
-                    <input type="text" class="form-control @error('room_name') is-invalid @enderror"
-                        placeholder="Tên phòng họp" name="room_name" value="{{ $roomMeets->room_name }}">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                        placeholder="Tên phòng họp" name="name" value="{{ $room->name }}">
                     {{-- @error('name')
               <div class="alert alert-danger">{{ $message }}</div>
             @enderror --}}
@@ -40,9 +40,9 @@
                 <div class="form-group">
                     <div class="">
                         <label>Số người</label>
-                        <input type="number" class="form-control @error('room_size') is-invalid @enderror"
-                            value="{{ $roomMeets->room_size }}" name="room_size">
-                        @error('room_size')
+                        <input type="number" class="form-control @error('size') is-invalid @enderror"
+                            value="{{ $room->size }}" name="size">
+                        @error('size')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
@@ -50,7 +50,7 @@
                 <div class="form-group ">
                     <label>Địa chỉ</label>
                     <input type="text" class="form-control @error('address') is-invalid @enderror" placeholder="Địa chỉ"
-                        name="address" value="{{ $roomMeets->address }}">
+                        name="address" value="{{ $room->address }}">
                     {{-- @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
               @enderror --}}

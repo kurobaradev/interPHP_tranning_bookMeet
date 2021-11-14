@@ -39,7 +39,7 @@
 
      {{-- quản lí Quản lí phòng họp --}}
      <li class="nav-item">
-         <a class="nav-link collapsed" href="{{ Route('room-meet.index') }}">
+         <a class="nav-link collapsed" href="{{ Route('room.index') }}">
              <i class="fas fa-fw fa-table"></i>
              <span>Quản lí phòng họp</span>
          </a>

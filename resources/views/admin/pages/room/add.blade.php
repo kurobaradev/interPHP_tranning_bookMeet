@@ -3,8 +3,6 @@
     <title>Quản lí tour</title>
 @endsection
 @section('css')
-    {{-- <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" /> --}}
-    {{-- <script src="{{asset('vendors/admin/tour/add/add.css')}}"></script> --}}
 
 @endsection
 @section('content')
@@ -17,7 +15,7 @@
         <!-- Page Heading -->
         @include('admin.partials.content-header',['name'=>'Quản lí phòng họp','key'=>'Thêm phòng họp'])
         <!-- DataTales Example -->
-        <form action="{{ route('room-meet.store') }}" method="POST" enctype="multipart/form-data"
+        <form action="{{ route('room.store') }}" method="POST" enctype="multipart/form-data"
             class="row  d-flex justify-content-center">
             @csrf
             <div class="form-group col-6">
@@ -31,8 +29,8 @@
             <div class="col-6">
                 <div class="form-group ">
                     <label>Tên phòng</label>
-                    <input type="text" class="form-control @error('room_name') is-invalid @enderror"
-                        placeholder="Tên phòng họp" name="room_name" value="{{ old('room_name') }}">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                        placeholder="Tên phòng họp" name="name" value="{{ old('name') }}">
                     {{-- @error('name')
             <div class="alert alert-danger">{{ $message }}</div>
           @enderror --}}
@@ -40,9 +38,9 @@
                 <div class="form-group">
                     <div class="">
                         <label>Số người</label>
-                        <input type="number" class="form-control @error('room_size') is-invalid @enderror"
-                            value="{{ old('room_size') }}" name="room_size">
-                        @error('room_size')
+                        <input type="number" class="form-control @error('size') is-invalid @enderror"
+                            value="{{ old('size') }}" name="size">
+                        @error('size')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
@@ -59,11 +57,6 @@
                 </div>
             </div>
             <br>
-            {{-- <div class="form-group">
-          <label >Nhập tag cho tour</label>
-          <select  name="tags[]" class="form-control tag_select_choose" multiple="multiple">
-          </select>
-        </div> --}}
 
             <button type="submit" class="btn btn-primary">Lưu thông tin</button>
         </form>
@@ -71,22 +64,7 @@
     </div>
 @endsection
 @section('js')
-    {{-- <script src="https://cdn.tiny.cloud/1/yoq2e98eie626pyeibu02i0ap1dn96a3xzcq356c01k1jyjr/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> --}}
-    {{-- id="editor1" rows="10" cols="80" --}}
-    {{-- <script type="text/javascript" src="{{ asset('vendors/ckeditor/ckeditor.js') }}"></script> --}}
-    {{-- <script>
-        CKEDITOR.replace('editor1');
-    </script> --}}
-    {{-- <script>tinymce.init({selector:'textarea'});</script> --}}
-    {{-- <script src="{{ asset('vendors/ckfinder/ckfinder.js') }}"></script> --}}
-    {{-- <script>
-        CKEDITOR.replace('editor', {
-            filebrowserBrowseUrl: "{{ asset('vendors/ckfinder/ckfinder.html') }}",
-            filebrowserUploadUrl: "{{ asset('vendors/ckfinder/core/connector/php/connector.php?
-            command=QuickUpload&amp;type=Files') }}"
-        });
-    </script> --}}
+
     <script src="{{ asset('vendors/admin/tour/add/add.js') }}"></script>
-    {{-- <script>$('#textareaId_ifr').contents().find("html").html();</script> --}}
 
 @endsection
