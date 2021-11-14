@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User;
 
-class Departments extends Model
+class Department extends Model
 {
     use HasFactory;
     use SoftDeletes;
     protected $guarded=[];
 
-    public function getUser()
+    public function users()
     {
-       return $this->belongsTo(User::class,'department_id','id');
+        return $this->hasMany(User::class,'department_id','id');
     }
-    
+
 }

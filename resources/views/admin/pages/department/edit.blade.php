@@ -3,7 +3,6 @@
     <title>Quản lí phòng ban</title>
 @endsection
 @section('css')
-    {{-- <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" /> --}}
     <link href="{{ asset('vendors/admin/tour/add.css') }}" rel="stylesheet" />
 
 @endsection
@@ -13,7 +12,7 @@
         <!-- Page Heading -->
         @include('admin.partials.content-header',['name'=>'Quản lí phòng ban','key'=>'Sửa phòng ban'])
         <!-- DataTales Example -->
-        <form action="{{ route('department.update', ['id' => $departments->id]) }}" method="POST" enctype="multipart/form-data"
+        <form action="{{ route('departments.update', ['id' => $departments->id]) }}" method="POST" enctype="multipart/form-data"
             class="row d-flex justify-content-center">
             @csrf
 
@@ -29,8 +28,8 @@
             <div class="col-6">
                 <div class="form-group ">
                     <label>Tên phòng ban</label>
-                    <input type="text" class="form-control @error('department_number') is-invalid @enderror"
-                        placeholder="Tên phòng họp" name="department_number" value="{{ $departments->department_number }}">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                        placeholder="Tên phòng họp" name="name" value="{{ $departments->name }}">
                     {{-- @error('name')
               <div class="alert alert-danger">{{ $message }}</div>
             @enderror --}}
@@ -50,8 +49,5 @@
     </div>
 @endsection
 @section('js')
-
     <script src="{{ asset('vendors/admin/tour/add/add.js') }}"></script>
-    {{-- <script>$('#textareaId_ifr').contents().find("html").html();</script> --}}
-
 @endsection

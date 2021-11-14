@@ -30,7 +30,7 @@
      {{-- end Quản lí người dùng --}}
      {{-- quản lí Quản lí phòng ban --}}
      <li class="nav-item">
-         <a class="nav-link collapsed" href="{{ Route('department.index') }}">
+         <a class="nav-link collapsed" href="{{ Route('departments.index') }}">
              <i class="fas fa-fw fa-table"></i>
              <span>Quản lí phòng ban</span>
          </a>

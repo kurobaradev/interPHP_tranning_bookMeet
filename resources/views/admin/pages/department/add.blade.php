@@ -17,7 +17,7 @@
         <!-- Page Heading -->
         @include('admin.partials.content-header',['name'=>'Quản lí phòng họp','key'=>'Thêm phòng họp'])
         <!-- DataTales Example -->
-        <form action="{{ route('department.store') }}" method="POST" enctype="multipart/form-data"
+        <form action="{{ route('departments.store') }}" method="POST" enctype="multipart/form-data"
             class="row  d-flex justify-c  ontent-center">
             @csrf
             <div class="form-group col-6">
@@ -31,21 +31,11 @@
             <div class="col-6">
                 <div class="form-group ">
                     <label>Tên phòng</label>
-                    <input type="text" class="form-control @error('department_number') is-invalid @enderror"
-                        placeholder="Tên phòng họp" name="department_number" value="{{ old('department_number') }}">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                        placeholder="Tên phòng họp" name="name" value="{{ old('name') }}">
                     {{-- @error('name')
             <div class="alert alert-danger">{{ $message }}</div>
           @enderror --}}
-                </div>
-                <div class="form-group">
-                    <div class="">
-                        <label>Số người</label>
-                        <input type="number" class="form-control @error('number_size') is-invalid @enderror"
-                            value="{{ old('number_size') }}" name="number_size">
-                        @error('number_size')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
                 </div>
                 <div class="form-group">
                     <div class="">
