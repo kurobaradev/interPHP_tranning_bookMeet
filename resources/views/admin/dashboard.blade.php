@@ -1,13 +1,13 @@
 @extends('admin.layouts.index')
 @section('title')
-<title>Trang chu</title>
+    <title>Trang chu</title>
 @endsection
 
 @section('content')
-<div class="container-fluid">
+    <div class="container-fluid">
 
-    <!-- Content Row -->
-    <div class="row">
+        <!-- Content Row -->
+        <div class="row">
 
-</div>
-@endsection
+        </div>
+    @endsection
