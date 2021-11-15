@@ -14,7 +14,7 @@ class StoreRoomRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'bail|required|unique:room_meets,name|max:255|min:5',
+            'name'=>'bail|required|unique:rooms,name|max:255|min:5',
             'size'=>'bail|required|Numeric',
             'address'=>'bail|required',
             'feature_image_path'=>'bail|required',
