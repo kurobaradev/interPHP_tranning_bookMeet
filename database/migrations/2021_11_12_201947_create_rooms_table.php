@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoomMeetsTable extends Migration
+class CreateRoomsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateRoomMeetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('room_meets', function (Blueprint $table) {
+        Schema::create('rooms', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('room_name');
-            $table->integer('room_size');
+            $table->string('name');
+            $table->integer('size');
             $table->string('address');
             $table->string('feature_image_path')->nullable();
             $table->string('feature_image_name')->nullable();
@@ -33,6 +33,6 @@ class CreateRoomMeetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('room_meets');
+        Schema::dropIfExists('rooms');
     }
 }

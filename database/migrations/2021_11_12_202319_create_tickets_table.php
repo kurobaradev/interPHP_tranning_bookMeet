@@ -15,17 +15,19 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreignId('room_id')
+            $table->bigInteger('room_id')->unsigned();
+            $table->foreign('room_id')
                 ->references('id')
-                ->on('room_meets')
+                ->on('rooms')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->date('date');  
+            $table->date('date');
             $table->dateTime('start');
             $table->dateTime('end');
             $table->integer("status")->default(0);

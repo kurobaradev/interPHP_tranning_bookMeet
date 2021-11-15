@@ -12,11 +12,11 @@
 
 <body>
     <div class="es-wrapper-color">
-       <p>Cảm ơn{{$Tickets->user->name}} đã đặt phòng họp</p><br>
-       <p>Cuộc họp bắt đầu vào <strong>{{$Tickets->start}}</strong></p><br>
-       <p>Cuộc họp kết thúc vào <strong>{{$Tickets->end}}</strong></p><br>
-       <p>Số phòng <strong>{{$Tickets->roomMeet->room_name}}</strong></p><br>
-       <p>Địa chỉ <strong>{{$Tickets->roomMeet->address}}</strong></p><br>
+       <p>Cảm ơn{{$ticket->user->name}} đã đặt phòng họp</p><br>
+       <p>Cuộc họp bắt đầu vào <strong>{{$ticket->start}}</strong></p><br>
+       <p>Cuộc họp kết thúc vào <strong>{{$ticket->end}}</strong></p><br>
+       <p>Số phòng <strong>{{$ticket->room->name}}</strong></p><br>
+       <p>Địa chỉ <strong>{{$ticket->room->address}}</strong></p><br>
     </div>
 </body>
 

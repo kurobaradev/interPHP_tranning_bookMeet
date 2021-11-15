@@ -15,7 +15,7 @@ class CreateDepartmentsTable extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('department_number');
+            $table->string('name');
             $table->string('address');
             $table->string('feature_image_path')->nullable();
             $table->string('feature_image_name')->nullable();

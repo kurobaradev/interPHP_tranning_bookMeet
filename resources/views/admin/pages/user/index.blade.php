@@ -44,21 +44,26 @@
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
-                                <tr>
+                                @if ($user->id != Auth::user()->id)
+                                    <tr>
 
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->phone }}</td>
-                                    <td>{{ $user->getDepartment->department_number }}</td>
-                                    <td>
-                                        @if ($user->status == 0)
-                                            <a  class="btn text-primary" href="{{route('users.ban', ['id' => $user->id])}}"><i class="fas fa-unlock"></i>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->phone }}</td>
+                                        <td>{{ $user->department->name }}</td>
+                                        <td>
+                                            @if ($user->status == 0)
+                                                <a class="btn text-primary"
+                                                    href="{{ route('users.ban', ['id' => $user->id]) }}"><i
+                                                        class="fas fa-unlock"></i></a>
                                             @else
-                                                <a  class="btn text-danger" href="{{route('users.unban', ['id' => $user->id])}}"><i class="fas fa-lock"></i>
-                                        @endif
-
-                                    </td>
-                                </tr>
+                                                <a class="btn text-danger"
+                                                    href="{{ route('users.unban', ['id' => $user->id]) }}"><i
+                                                        class="fas fa-lock"></i></a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>

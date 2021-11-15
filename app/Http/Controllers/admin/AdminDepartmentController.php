@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Departments;
-use App\Models\User;
+use App\Http\Requests\StoreDepartmentRequest;
+use App\Models\Department;
 use App\Traits\StorageImageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,21 +13,15 @@ use Illuminate\Support\Facades\Log;
 class AdminDepartmentController extends Controller
 {
     use StorageImageTrait;
-    private $departments;
+    private $department;
 
-    public function __construct(Departments $departments)
+    public function __construct(Department $department)
     {
-        $this->departments = $departments;
+        $this->department = $department;
     }
     public function index()
     {
-        DB::enableQueryLog();
-        $departments = Departments::all();
-        // $posts = Departments::find(1)->getUser()->name;
-        $query = DB::getQueryLog();
-
-// dd($query);
-        // dd($posts);
+        $departments = $this->department->with('users')->get();
         return view('admin.pages.department.index', compact('departments'));
     }
     public function create()
@@ -35,26 +29,25 @@ class AdminDepartmentController extends Controller
         return view('admin.pages.department.add');
     }
 
-    public function store(Request $request)
+    public function store(StoreDepartmentRequest $request)
     {
-        // $path = $request->file('feature_image_path')->storeAs('tour');
         try {
             DB::beginTransaction();
             $dataDepartmentCreate = [
-                'department_number' => $request->department_number,
+                'name' => $request->name,
                 'address' => $request->address,
-                'number_size' => $request->description,
             ];
-            $dataUploadfeatureImage = $this->StorageImageUpload($request, 'feature_image_path', 'department');
-            if (!empty($dataUploadfeatureImage)) {
-                $dataDepartmentCreate['feature_image_name'] = $dataUploadfeatureImage['file_name'];
-                $dataDepartmentCreate['feature_image_path'] = $dataUploadfeatureImage['file_path'];
+            $dataUploadFeatureImage = $this->StorageImageUpload($request, 'feature_image_path', 'departments');
+            if (!empty($dataUploadFeatureImage)) {
+                $dataDepartmentCreate['feature_image_name'] = $dataUploadFeatureImage['file_name'];
+                $dataDepartmentCreate['feature_image_path'] = $dataUploadFeatureImage['file_path'];
             }
             // dd($dataCarCreate);
-            $this->departments->create($dataDepartmentCreate);
+            $this->department->create($dataDepartmentCreate);
             DB::commit();
             session()->flash('success', 'tạo thành công !.');
-            return redirect(route('department.index'));
+
+            return redirect(route('departments.index'));
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error("message:" . $exception->getMessage() . 'Line' . $exception->getLine());
@@ -65,7 +58,7 @@ class AdminDepartmentController extends Controller
 
     public function edit($id)
     {
-        $departments = $this->departments->find($id);
+        $departments = $this->department->find($id);
         return view('admin.pages.department.edit', compact('departments'));
     }
 
@@ -74,31 +67,29 @@ class AdminDepartmentController extends Controller
         try {
             DB::beginTransaction();
             $dataDepartmentUpdate = [
-                'department_number' => $request->department_number,
+                'name' => $request->name,
                 'address' => $request->address,
-                'number_size' => $request->description,
             ];
-            $dataUploadfeatureImage = $this->StorageImageUpload($request, 'feature_image_path', 'department');
-            if (!empty($dataUploadfeatureImage)) {
-                $dataDepartmentUpdate['feature_image_name'] = $dataUploadfeatureImage['file_name'];
-                $dataDepartmentUpdate['feature_image_path'] = $dataUploadfeatureImage['file_path'];
+            $dataUploadFeatureImage = $this->StorageImageUpload($request, 'feature_image_path', 'department');
+            if (!empty($dataUploadFeatureImage)) {
+                $dataDepartmentUpdate['feature_image_name'] = $dataUploadFeatureImage['file_name'];
+                $dataDepartmentUpdate['feature_image_path'] = $dataUploadFeatureImage['file_path'];
             }
+            $this->department->find($id)->update($dataDepartmentUpdate);
 
-            $this->departments->find($id)->update($dataDepartmentUpdate);
-            $departments = $this->departments->find($id);
             DB::commit();
             session()->flash('success', 'Cập nhật thành công !.');
-            return redirect(route('department.index'));
+            return redirect(route('departments.index'));
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error("message:" . $exception->getMessage() . 'Line' . $exception->getLine());
         }
-        
+
     }
     public function delete($id)
     {
         try {
-            $this->departments->find($id)->delete();
+            $this->department->find($id)->delete();
             return response()->json([
                 'code' => 200,
                 'message' => 'success'

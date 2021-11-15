@@ -1,13 +1,9 @@
 @extends('layouts.app')
 @section('css')
-    
+
 @endsection
 @section('js')
-
-    {{-- <script src="{{ asset('vendors/action/getTime.js') }}"></script> --}}
     <script>
-        //    var day = document.getElementById('getData').value;
-            // var div1 = document.getElementById('getDate')
             var url = window.location.pathname;
             var room_id = url.split('/')[2];
             $.ajax({
@@ -35,17 +31,15 @@
                                 // nếu dữ liệu trả về = time thì ẩn đi
                                 if(e[n].start === time+':00'){
                                     $('label.btn.btn-outline-primary.'+i).addClass('disabled');
-                                    // console.log(e[n].end);
-                                // console.log(e[n].start);
                                 }
-                             
+
                             }
                         }
                     });
                 }
             });
-    
-    
+
+
         </script>
 @endsection
 @section('content')
@@ -55,8 +49,8 @@
                 <div class="card ">
                     <img class="card-img-top" src="{{ $room->feature_image_path }}" />
                     <div class="card-body">
-                        <h4 class="card-title"><strong>Phòng</strong> : {{ $room->room_name }}</h4>
-                        <h6 class="card-subtitle mb-2"><strong>Số ghế</strong> : {{ $room->room_size }}</h6>
+                        <h4 class="card-title"><strong>Phòng</strong> : {{ $room->name }}</h4>
+                        <h6 class="card-subtitle mb-2"><strong>Số ghế</strong> : {{ $room->size }}</h6>
                         <p class="card-text"><strong>Địa chỉ</strong> : {{ $room->address }}</p>
                     </div>
                 </div>
@@ -70,11 +64,9 @@
                     <input type="hidden" name="room_id" value="{{ $room->id }}">
                     <input min="<?php echo (new \DateTime())->format('Y-m-d'); ?>" type="date" class="form-control col-7" name="date" id="mydate"
                         aria-describedby="helpId" placeholder="">
-                    <small id="helpId" class="form-text text-danger">
-                        @error('datebook')
-                            {{ $message }}
-                        @enderror
-                    </small>
+                    @error('date')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <input type="hidden" id="time">
                     {{-- radio --}}
                     {{-- khởi tạo danh sách thời gian và chèn vào biến class 1 tham số i để sau bắt sự kiện thay đổi --}}
@@ -87,16 +79,18 @@
                         @endfor
                     </div>
                     {{-- bắt lỗi --}}
-        
+                    @error('timeSlot')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     {{-- end radio --}}
                 </div>
                 <button class="btn btn-primary ">Book Room</button>
             </form>
 
         </div>
-        
+
 
     </div>
 
-    
+
 @endsection

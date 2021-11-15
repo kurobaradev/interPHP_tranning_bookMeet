@@ -12,9 +12,9 @@
             data.forEach(element => {
                 // <option value="">PHP</option>
                 console.log(element.id);
-                $("#department_id").append("<option value='"+element.id+"'>"+element.department_number+"</option>");
+                $("#department_id").append("<option value='"+element.id+"'>"+element.name+"</option>");
             });
-           
+
         }
     });
 </script>
@@ -54,7 +54,7 @@
                             <select id="department_id" class="form-control @error('department_id') is-invalid @enderror"
                                     name="department_id" value="{{ old('department_id') }}" required
                                     autocomplete="department_id" autofocus>
-                               
+
                                 {{-- <option value="1">PHP</option> --}}
                             </select>
 
