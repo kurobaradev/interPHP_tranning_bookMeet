@@ -53,7 +53,7 @@
                                     <td>{{ $ticket->room->name }}</td>
                                     <td>{{ $ticket->user->name }}</td>
                                     <td>{{date("H:i", strtotime($ticket->start))}}</td>
-                                    <td>{{date("H:i", strtotime($ticket->start))}}</td>
+                                    <td>{{date("H:i", strtotime($ticket->end))}}</td>
                                     <td>{{date("d/m/Y", strtotime($ticket->date))}}</td>
 
                                 </tr>
