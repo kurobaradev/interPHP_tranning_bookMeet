@@ -14,7 +14,7 @@ class AdminRoomController extends Controller
 {
 
     use StorageImageTrait;
-    private $room;
+    public $room;
 
     public function __construct(Room $room)
     {
@@ -38,44 +38,42 @@ class AdminRoomController extends Controller
     public function store(StoreRoomRequest $request)
     {
         try {
-            DB::beginTransaction();
             // khởi tạo dữ liệu
             $dataRoomCreate = [
                 'name' => $request->name,
                 'size' => $request->size,
                 'address' => $request->address
             ];
-            $dataUploadFeatureImage = $this->StorageImageUpload($request, 'feature_image_path', 'rooms');
-            if (!empty($dataUploadFeatureImage)) {
-                $dataRoomCreate['feature_image_name'] = $dataUploadFeatureImage['file_name'];
-                $dataRoomCreate['feature_image_path'] = $dataUploadFeatureImage['file_path'];
+            $dataUploadImage = $this->storageImageUpload($request, 'feature_image_path', 'rooms');
+            if (!empty($dataUploadImage)) {
+                $dataRoomCreate['feature_image_name'] = $dataUploadImage['file_name'];
+                $dataRoomCreate['feature_image_path'] = $dataUploadImage['file_path'];
             }
             // dd($dataRoomMeetCreate);
             // tạo dữ liệu
             $this->room->create($dataRoomCreate);
-            DB::commit();
+
             session()->flash('success', 'tạo thành công !.');
             return redirect(route('rooms.index'));
         } catch (\Exception $exception) {
-            DB::rollBack();
-            Log::error("message:" . $exception->getMessage() . 'Line' . $exception->getLine());
+            report($exception);
+            return false;
         }
     }
 
     // điều hướng sang trang chỉnh sửa
-    public function edit($id)
+    public function show($idRoom)
     {
         // tìm phòng trùng với giá trị id truyền vào
-        $room = $this->room->find($id);
+        $room = $this->room->find($idRoom);
         // dd($room);
         return view('admin.pages.room.edit', compact('room'));
     }
 
     // khởi tạo cập nhật chỉnh sửa
-    public function update(Request $request, $id)
+    public function update(Request $request, $idRoom)
     {
         try {
-            DB::beginTransaction();
             // khởi tạo dữ liệu
             $dataRoomUpdate = [
                 'name' => $request->name,
@@ -83,36 +81,34 @@ class AdminRoomController extends Controller
                 'address' => $request->address,
                 'status' => 0,
             ];
-            $dataUploadFeatureImage = $this->StorageImageUpload($request, 'feature_image_path', 'roomst');
-            if (!empty($dataUploadFeatureImage)) {
-                $dataRoomUpdate['feature_image_name'] = $dataUploadFeatureImage['file_name'];
-                $dataRoomUpdate['feature_image_path'] = $dataUploadFeatureImage['file_path'];
+            $dataUploadImage = $this->storageImageUpload($request, 'feature_image_path', 'roomst');
+            if (!empty($dataUploadImage)) {
+                $dataRoomUpdate['feature_image_name'] = $dataUploadImage['file_name'];
+                $dataRoomUpdate['feature_image_path'] = $dataUploadImage['file_path'];
             }
             // dd($data_room_meet_update);
             // tìm phòng có id và bắt đầu cập nhật
-            $this->room->find($id)->update($dataRoomUpdate);
-            DB::commit();
+            $this->room->find($idRoom)->update($dataRoomUpdate);
             session()->flash('success', 'Cập nhật thành công !.');
             return redirect(route('rooms.index'));
         } catch (\Exception $exception) {
-            DB::rollBack();
-            Log::error("message:" . $exception->getMessage() . 'Line' . $exception->getLine());
+            report($exception);
+            return false;
         }
     }
 
     // xóa dữ liệu
-    public function delete($id)
+    public function delete($idRoom)
     {
         try {
             // tìm đến phòng có id của phòng cần xóa
-            $this->room->find($id)->delete();
+            $this->room->find($idRoom)->delete();
             // trả về dữ liệu dạng json và thông báo ra màn hình
             return response()->json([
                 'code' => 200,
                 'message' => 'success'
             ], 200);
         } catch (\Exception $exception) {
-            Log::error("message:" . $exception->getMessage() . 'Line' . $exception->getLine());
             return response()->json([
                 'code' => 500,
                 'message' => 'fail'

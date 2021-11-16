@@ -29,9 +29,10 @@ Route::middleware(['CheckLogin'])->group(function () {
     //get day of room
 
     Route::post('/bookroom', [TicketController::class, 'bookroom'])->name('room.bookroom');
-    Route::get('/profile', [UserController::class, 'profile'])->name('user-profile');
+    Route::get('/profile/{id}', [UserController::class, 'profile'])->name('user-profile');
     Route::post('/profile/{id}', [UserController::class, 'update'])->name('profile.update');
     //  admin
+    Route::middleware(['admin'])->group(function () {
     Route::prefix('/admin')->group(function () {
 
         //dashboard
@@ -76,4 +77,5 @@ Route::middleware(['CheckLogin'])->group(function () {
         });
 
     });
+});
 });

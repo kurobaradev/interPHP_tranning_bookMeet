@@ -9,14 +9,14 @@ trait StorageImageTrait
 {
 
 
-    public function StorageImageUpload($request, $fieldName, $foderName)
+    public static function storageImageUpload($request, $fieldName, $foderName)
     {
 
         if ($request->hasFile($fieldName)) {
             $file = $request->$fieldName;
             $fileNameOrigin = $file->getClientOriginalName();
             $fileNameHash = Str::random(20) . '.' . $file->getClientOriginalExtension();
-            $filePath = $request->file($fieldName)->move(public_path('/images/'. $foderName.'/'. auth()->id()), $fileNameHash);
+            $request->file($fieldName)->move(public_path('/images/'. $foderName.'/'. auth()->id()), $fileNameHash);
             $dataUploadTrait = [
                 'file_name' => $fileNameOrigin,
                 'file_path' => '/images/'. $foderName.'/'. auth()->id().'/'.$fileNameHash
@@ -25,7 +25,7 @@ trait StorageImageTrait
         }
         return null;
     }
-    public function StorageImageUploadMutiple($file, $foderName)
+    public static function storageImageUploadMutiple($file, $foderName)
     {
         $fileNameOrigin = $file->getClientOriginalName();
         $fileNameHash = Str::random(20) . '.' . $file->getClientOriginalExtension();

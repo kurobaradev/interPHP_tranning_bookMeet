@@ -9,7 +9,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, CascadeSoftDeletes;
@@ -50,12 +49,11 @@ class User extends Authenticatable
 
     public function department()
     {
-        return $this->belongsTo(Department::class,'department_id','id');
+        return $this->belongsTo(Department::class, 'department_id', 'id');
     }
 
-    public function tickets(){
-        return $this->hasMany(Ticket::class,'room_id','id');
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class, 'room_id', 'id');
     }
-
-
 }

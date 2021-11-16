@@ -18,9 +18,9 @@ class RoomController extends Controller
         $rooms =$this->room->all();
         return view('client.room', compact('rooms'));
     }
-    public function book($id)
+    public function book($idRoom)
     {
-        $room = $this->room->find($id);
+        $room = $this->room->find($idRoom);
         return view('client.book', compact('room'));
     }
 }

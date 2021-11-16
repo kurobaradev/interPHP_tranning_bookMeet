@@ -17,19 +17,25 @@ use Illuminate\Support\Facades\Mail;
 class TicketController extends Controller
 {
 
+    public $ticket;
+
+    public function __construct(Ticket $ticket)
+    {
+        $this->ticket = $ticket;
+    }
     public function bookroom(StoreTicketRequest $request)
     {
         $time = $request->timeSlot;
-        $timeSlot =  explode('?',$time);
+        $timeSlot =  explode('?', $time);
         $date = $request->date;
         $start = $date.' '.$timeSlot[0];
         $end = $date.' '.$timeSlot[1];
-        $room_id = $request->room_id;
+        $roomId = $request->room_id;
         $startbook = $start;
         $endbook = $end;
 
-        $dataOderCreate = Ticket::create([
-            'room_id'=> $room_id,
+        $dataOderCreate = $this->ticket->save([
+            'room_id'=> $roomId,
             'start'=> $startbook,
             'end'=> $endbook,
             'date'=> $date,
@@ -37,9 +43,9 @@ class TicketController extends Controller
             ]);
             // dd($dataOderCreate);
         Mail::to(Auth::user()->email)->send(new OrderRoomMeet($dataOderCreate));
-        $dataOderCreate->save();
+        ;
+        // $dataOderCreate->save();
         session()->flash('success', 'Đặt tour thành công !.');
         return redirect(route('home.index'));
-
     }
 }

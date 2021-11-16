@@ -9,12 +9,9 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-
     }
-    public function index(){
-        if (!Auth::check()) {
-            return view('welcome');
-        }
-        return view('admin.dashboard');
+    public function index()
+    {
+            return view('admin.dashboard');
     }
 }

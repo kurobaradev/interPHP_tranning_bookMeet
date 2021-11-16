@@ -16,9 +16,9 @@ class OrderRoomMeet extends Mailable
     use Queueable, SerializesModels;
     public $ticket;
 
-    public function __construct(Ticket $Ticket)
+    public function __construct(Ticket $ticket)
     {
-        $this->ticket = $Ticket;
+        $this->ticket = $ticket;
     }
 
     public function build()

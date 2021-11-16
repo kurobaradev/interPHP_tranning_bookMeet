@@ -19,6 +19,6 @@ class Room extends Model
 
     public function tickets()
     {
-        return $this->hasMany(Ticket::class,'room_id','id');
+        return $this->hasMany(Ticket::class, 'room_id', 'id');
     }
 }

@@ -10,40 +10,40 @@ use Illuminate\Support\Facades\Log;
 
 class AdminUserController extends Controller
 {
-    private $user;
+    public $user;
     public function __construct(User $user)
     {
         $this->user = $user;
     }
     public function index()
     {
+
         $users = $this->user->with('department')->get();
 
         return view('admin.pages.user.index', compact('users'));
     }
 
-    public function ban($id)
-    {
-            try {
-                // tìm đến phòng có id của phòng cần xóa
-                $this->user->find($id)->update(
-                    [
-                        'status' => 1,
-                    ]
-                );
-                // trả về dữ liệu dạng json và thông báo ra màn hình
-                return redirect()->back()->with('success', 'Đã khóa người dùng!');
-            } catch (\Exception $exception) {
-                Log::error("message:" . $exception->getMessage() . 'Line' . $exception->getLine());
-            }
-
-
-    }
-    public function unban($id)
+    public function ban($idUser)
     {
         try {
-            // tìm đến phòng có id của phòng cần xóa
-            $this->user->find($id)->update(
+            // tìm đến phòng có idUser của phòng cần xóa
+            $this->user->find($idUser)->update(
+                [
+                    'status' => 1,
+                ]
+            );
+            // trả về dữ liệu dạng json và thông báo ra màn hình
+            return redirect()->back()->with('success', 'Đã khóa người dùng!');
+        } catch (\Exception $exception) {
+            report($exception);
+            return false;
+        }
+    }
+    public function unban($idUser)
+    {
+        try {
+            // tìm đến phòng có idUser của phòng cần xóa
+            $this->user->find($idUser)->update(
                 [
                     'status' => 0,
                 ]
@@ -51,10 +51,8 @@ class AdminUserController extends Controller
             // trả về dữ liệu dạng json và thông báo ra màn hình
             return redirect()->back()->with('success', 'Đã mở khóa người dùng!');
         } catch (\Exception $exception) {
-            Log::error("message:" . $exception->getMessage() . 'Line' . $exception->getLine());
-
+            report($exception);
+            return false;
         }
     }
-
-
 }

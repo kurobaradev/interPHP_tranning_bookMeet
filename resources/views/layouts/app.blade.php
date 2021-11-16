@@ -63,7 +63,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{route('user-profile')}}">Chỉnh sửa hồ sơ</a>
+                                    <a class="dropdown-item" href="{{route('user-profile',['id'=>Auth::user()->id])}}">Chỉnh sửa hồ sơ</a>
                                     <a class="dropdown-item" href="{{route('dashboard.index')}}">Trang quản trị</a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -84,6 +84,18 @@
         </nav>
 
         <main class="py-4">
+            <div class="card-body">
+                @if (session('error'))
+                <div class="alert alert-danger">
+                  {{ session('error') }}
+                </div>
+                @endif
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+            </div>
             @yield('content')
         </main>
     </div>

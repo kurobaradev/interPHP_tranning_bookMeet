@@ -9,26 +9,27 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    private $user;
-    public function __construct(User $user)
+    protected $user;
+
+    public function __construct($user)
     {
         $this->user = $user;
     }
+
+
 
     public function profile()
     {
 
             $users = $this->user
-            ->where('id',Auth::user()->id)
-            ->with('tickets','department')
+            ->where('id', Auth::user()->id)
+            ->with('tickets', 'department')
             ->get();
-            return view('client.profile',compact('users'));
-
+            return view('client.profile', compact('users'));
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $idUser)
     {
-       $this->user->find($id)->update($request->all());
-       return redirect()->back()->with('success', 'Cập nhật thành công!');
-
+        $this->user->find($idUser)->update($request->all());
+        return redirect()->back()->with('success', 'Cập nhật thành công!');
     }
 }
