@@ -34,7 +34,7 @@ class TicketController extends Controller
         $startbook = $start;
         $endbook = $end;
 
-        $dataOderCreate = $this->ticket->save([
+        $dataOderCreate =  $this->ticket->create([
             'room_id'=> $roomId,
             'start'=> $startbook,
             'end'=> $endbook,

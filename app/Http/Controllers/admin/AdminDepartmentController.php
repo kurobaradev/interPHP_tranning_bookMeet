@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Models\Department;
 use App\Traits\StorageImageTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
-class AdminDepartmentController extends Controller
+class AdminDepartmentController extends AdminController
 {
     use StorageImageTrait;
     public $department;

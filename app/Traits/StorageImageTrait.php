@@ -8,8 +8,7 @@ use Illuminate\Support\Str;
 trait StorageImageTrait
 {
 
-
-    public static function storageImageUpload($request, $fieldName, $foderName)
+    public function storageImageUpload($request, $fieldName, $foderName)
     {
 
         if ($request->hasFile($fieldName)) {
@@ -25,15 +24,15 @@ trait StorageImageTrait
         }
         return null;
     }
-    public static function storageImageUploadMutiple($file, $foderName)
-    {
-        $fileNameOrigin = $file->getClientOriginalName();
-        $fileNameHash = Str::random(20) . '.' . $file->getClientOriginalExtension();
-        $filePath = $file->storeAs('public/' . $foderName . '/' . auth()->id(), $fileNameHash);
-        $dataUploadTrait = [
-            'file_name' => $fileNameOrigin,
-            'file_path' => Storage::url($filePath)
-        ];
-        return $dataUploadTrait;
-    }
+    // public static function storageImageUploadMutiple($file, $foderName)
+    // {
+    //     $fileNameOrigin = $file->getClientOriginalName();
+    //     $fileNameHash = Str::random(20) . '.' . $file->getClientOriginalExtension();
+    //     $filePath = $file->storeAs('public/' . $foderName . '/' . auth()->id(), $fileNameHash);
+    //     $dataUploadTrait = [
+    //         'file_name' => $fileNameOrigin,
+    //         'file_path' => Storage::url($filePath)
+    //     ];
+    //     return $dataUploadTrait;
+    // }
 }

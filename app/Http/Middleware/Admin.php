@@ -17,10 +17,9 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->role == 1) {
+        if (Auth::user()->role == 1) {
             return $next($request);
         }
-
         return redirect('/')->with('error', 'Bạn không có quyền quản trị');
     }
 }

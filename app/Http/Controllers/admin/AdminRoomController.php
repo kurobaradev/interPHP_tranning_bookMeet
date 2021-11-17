@@ -7,8 +7,6 @@ use App\Http\Requests\StoreRoomRequest;
 use App\Models\Room;
 use App\Traits\StorageImageTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class AdminRoomController extends Controller
 {

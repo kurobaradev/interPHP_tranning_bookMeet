@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\AdminDepartmentController;
 use App\Http\Controllers\admin\AdminRoomController;
 use App\Http\Controllers\admin\AdminTicketController;
 use App\Http\Controllers\admin\AdminUserController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\client\RoomController;
 use App\Http\Controllers\client\TicketController;
 use App\Http\Controllers\client\UserController;
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+Route::get('/register', [RegisterController::class, 'create'])->name('register');
+Route::post('/register/store', [RegisterController::class, 'update'])->name('register.store');
 
 // middlwerare checklogin
 Route::middleware(['CheckLogin'])->group(function () {
@@ -30,7 +33,7 @@ Route::middleware(['CheckLogin'])->group(function () {
 
     Route::post('/bookroom', [TicketController::class, 'bookroom'])->name('room.bookroom');
     Route::get('/profile/{id}', [UserController::class, 'profile'])->name('user-profile');
-    Route::post('/profile/{id}', [UserController::class, 'update'])->name('profile.update');
+    Route::post('/profileUpdate/{id}', [UserController::class, 'update'])->name('profile.update');
     //  admin
     Route::middleware(['admin'])->group(function () {
     Route::prefix('/admin')->group(function () {

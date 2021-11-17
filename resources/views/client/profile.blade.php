@@ -52,25 +52,25 @@ class="">
 <br>
 <br>
 <h3 class="text-center">Các phòng đã đặt</h3>
-@foreach ($item->tickets as $room)
-
-@endforeach
 <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Mã đặt phòng</th>
-        <th scope="col">Hình ảnh</th>
-        <th scope="col">Thời gian</th>
-        <th scope="col">Ngày</th>
-      </tr>
-    </thead>
-    <tbody>
+  <thead>
+    <tr>
+      <th scope="col">Mã đặt phòng</th>
+      <th scope="col">Hình ảnh</th>
+      <th scope="col">Thời gian</th>
+      <th scope="col">Ngày</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach ($item->tickets as $room)
       <tr>
         <th scope="row">{{$room->id}}</th>
         <td><img class="image_100_100" src="{{  $room->room->feature_image_path }}" alt="#"></td>
         <td>{{date("H:i", strtotime($room->start))}} - {{date("H:i", strtotime($room->end))}}</td>
         <td>{{date("d/m/Y", strtotime($room->date))}}</td>
+            
       </tr>
+      @endforeach
     </tbody>
   </table>
 @endforeach
