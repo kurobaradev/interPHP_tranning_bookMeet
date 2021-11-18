@@ -60,7 +60,7 @@ class AdminRoomController extends Controller
     }
 
     // điều hướng sang trang chỉnh sửa
-    public function show($idRoom)
+    public function edit($idRoom)
     {
         // tìm phòng trùng với giá trị id truyền vào
         $room = $this->room->find($idRoom);
