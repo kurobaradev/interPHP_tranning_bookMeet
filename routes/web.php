@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\AdminDepartmentController;
 use App\Http\Controllers\admin\AdminRoomController;
 use App\Http\Controllers\admin\AdminTicketController;
 use App\Http\Controllers\admin\AdminUserController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\client\RoomController;
 use App\Http\Controllers\client\TicketController;
 use App\Http\Controllers\client\UserController;
@@ -15,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+Route::get('/register', [RegisterController::class, 'create'])->name('register');
+Route::post('/register/store', [RegisterController::class, 'update'])->name('register.store');
 
 // middlwerare checklogin
 Route::middleware(['CheckLogin'])->group(function () {
 
-    // client get
-    // get all room
     Route::get('/', [RoomController::class, 'index'])->name('home.index');
 
     // take room by id
@@ -29,7 +30,7 @@ Route::middleware(['CheckLogin'])->group(function () {
     //get day of room
 
     Route::post('/bookroom', [TicketController::class, 'bookroom'])->name('room.bookroom');
-    Route::get('/profile', [UserController::class, 'profile'])->name('user-profile');
+    Route::get('/profile/{id}', [UserController::class, 'profile'])->name('user-profile');
     Route::post('/profile/{id}', [UserController::class, 'update'])->name('profile.update');
     //  admin
     Route::prefix('/admin')->group(function () {

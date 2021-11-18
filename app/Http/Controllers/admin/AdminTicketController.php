@@ -4,11 +4,10 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ticket;
-use Illuminate\Http\Request;
 
 class AdminTicketController extends Controller
 {
-    private $ticket;
+    public $ticket;
 
     public function __construct(Ticket $ticket)
     {
@@ -17,7 +16,7 @@ class AdminTicketController extends Controller
 
     public function index()
     {
-        $tickets = $this->ticket->with('user','room')->get();
+        $tickets = $this->ticket->with('user', 'room')->get();
         // dd($tickets);
         return view('admin.pages.ticket.index', compact('tickets'));
     }

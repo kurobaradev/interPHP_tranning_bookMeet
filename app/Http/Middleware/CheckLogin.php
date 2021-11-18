@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckLogin
 {
+    protected $auth;
+
+    public function __construct(Auth $auth)
+    {
+        $this->auth = $auth;
+    }
+
+
     /**
      * Handle an incoming request.
      *
@@ -17,7 +25,7 @@ class CheckLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guest()) {
+        if ($this->auth::guest()) {
             return redirect()->intended('login');
         }
         return $next($request);

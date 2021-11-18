@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
-class AdminController extends Controller
+class AdminController
 {
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    
     public function __construct()
     {
-
     }
-    public function index(){
-        if (!Auth::check()) {
-            return view('welcome');
-        }
+    public function index()
+    {
         return view('admin.dashboard');
     }
 }
