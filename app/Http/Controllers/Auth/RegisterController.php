@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+    public function __construct(User $user)
+    {
+        $this->user= $user;
+        $this->middleware('guest');
+    }
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -36,10 +41,8 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+    protected $user;
+  
 
     /**
      * Get a validator for an incoming registration request.
@@ -47,15 +50,6 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'department_id' => ['required'],
-        ]);
-    }
 
     /**
      * Create a new user instance after a valid registration.
@@ -65,13 +59,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return $this->user->create([
             'name' => $data['name'],
             'email' => $data['email'],
             'department_id' => $data['department_id'],
-            'password' => Hash::make($data['password']),
+            'password' => bcrypt($data['password']),
             'status' => 0,
 
         ]);
+        // $this->user->save($dataUser);
     }
 }
