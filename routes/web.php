@@ -33,6 +33,7 @@ Route::middleware(['CheckLogin'])->group(function () {
     Route::get('/profile/{id}', [UserController::class, 'profile'])->name('user-profile');
     Route::post('/profile/{id}', [UserController::class, 'update'])->name('profile.update');
     //  admin
+    Route::middleware(['CheckLogin'])->group(function () {
     Route::prefix('/admin')->group(function () {
 
         //dashboard
@@ -77,4 +78,5 @@ Route::middleware(['CheckLogin'])->group(function () {
         });
 
     });
+});
 });
